@@ -72,7 +72,7 @@
         else
         {
             NSString *message = @"指标进度获取失败!";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+            [[YFCommon sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
     else if ([downloader.purpose isEqualToString:kSalaryInfoInThisMonthByProvinceDownloaderKey]) {
@@ -92,7 +92,7 @@
         else
         {
             NSString *message = @"指标进度获取失败!";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+            [[YFCommon sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
     else if ([downloader.purpose isEqualToString:kDevelopInfoInRecentMonthByDayDownloaderKey]) {
@@ -112,7 +112,7 @@
         else
         {
             NSString *message = @"日均发展量获取失败!";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+            [[YFCommon sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
 }
@@ -120,7 +120,7 @@
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
 {
     NSLog(@"%@",message);//to delete
-    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
+    [[YFCommon sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
 }
 
 @end

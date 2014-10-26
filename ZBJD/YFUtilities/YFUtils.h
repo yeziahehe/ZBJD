@@ -14,7 +14,6 @@
 #ifndef YFUtils_YFUtils_h
 #define YFUtils_YFUtils_h
 
-#import "YFProgressHUD.h"
 #import "YFDownloader.h"
 #import "YFDownloaderManager.h"
 #import "YFCommon.h"

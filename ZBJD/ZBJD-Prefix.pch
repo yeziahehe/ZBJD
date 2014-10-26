@@ -18,4 +18,5 @@
     #import "YFUtils.h"
     #import "JSON.h"
     #import "DataManager.h"
+    #import "MBProgressHUD.h"
 #endif

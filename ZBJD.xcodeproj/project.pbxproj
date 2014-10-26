@@ -22,7 +22,6 @@
 		75DD193A19FA7CA40057E091 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD193919FA7CA40057E091 /* Reachability.m */; };
 		75DD193E19FA7DDC0057E091 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD193D19FA7DDC0057E091 /* MBProgressHUD.m */; };
 		75DD194219FA7E8A0057E091 /* YFProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75DD193F19FA7E8A0057E091 /* YFProgressHUD.bundle */; };
-		75DD194319FA7E8A0057E091 /* YFProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD194119FA7E8A0057E091 /* YFProgressHUD.m */; };
 		75DD194A19FA80970057E091 /* CustomNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD194919FA80970057E091 /* CustomNavViewController.m */; };
 		75DD195419FA849C0057E091 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD195219FA849C0057E091 /* HomeViewController.m */; };
 		75DD195519FA849C0057E091 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DD195319FA849C0057E091 /* HomeViewController.xib */; };
@@ -109,8 +108,6 @@
 		75DD193C19FA7DDC0057E091 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		75DD193D19FA7DDC0057E091 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		75DD193F19FA7E8A0057E091 /* YFProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = YFProgressHUD.bundle; path = YFUtilities/YFProgressHUD.bundle; sourceTree = "<group>"; };
-		75DD194019FA7E8A0057E091 /* YFProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFProgressHUD.h; path = YFUtilities/YFProgressHUD.h; sourceTree = "<group>"; };
-		75DD194119FA7E8A0057E091 /* YFProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFProgressHUD.m; path = YFUtilities/YFProgressHUD.m; sourceTree = "<group>"; };
 		75DD194419FA7EB10057E091 /* YFUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YFUtils.h; path = YFUtilities/YFUtils.h; sourceTree = "<group>"; };
 		75DD194819FA80970057E091 /* CustomNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavViewController.h; sourceTree = "<group>"; };
 		75DD194919FA80970057E091 /* CustomNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavViewController.m; sourceTree = "<group>"; };
@@ -328,8 +325,6 @@
 				75DD19EA19FB86210057E091 /* YFCommon.h */,
 				75DD19EB19FB86210057E091 /* YFCommon.m */,
 				75DD193F19FA7E8A0057E091 /* YFProgressHUD.bundle */,
-				75DD194019FA7E8A0057E091 /* YFProgressHUD.h */,
-				75DD194119FA7E8A0057E091 /* YFProgressHUD.m */,
 				75DD199619FB79F80057E091 /* YFDownloader.h */,
 				75DD199719FB79F80057E091 /* YFDownloader.m */,
 				75DD199819FB79F80057E091 /* YFDownloaderManager.h */,
@@ -694,7 +689,6 @@
 				75DD1A2F19FBD2620057E091 /* POPBasicAnimation.mm in Sources */,
 				75DD196419FAB3780057E091 /* BaseMenuViewController.m in Sources */,
 				75DD193A19FA7CA40057E091 /* Reachability.m in Sources */,
-				75DD194319FA7E8A0057E091 /* YFProgressHUD.m in Sources */,
 				75DD1A5319FBF2F50057E091 /* SBJsonParser.m in Sources */,
 				75DD190D19FA78AB0057E091 /* main.m in Sources */,
 				75DD195419FA849C0057E091 /* HomeViewController.m in Sources */,
