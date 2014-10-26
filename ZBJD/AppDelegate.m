@@ -9,11 +9,33 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
+@synthesize customNavViewController;
+
+#pragma mark - Instance Methods
+- (CustomNavViewController *)customNavViewController
+{
+    if (customNavViewController == nil)
+    {
+        
+        HomeViewController *homeViewController = [[HomeViewController alloc]initWithNibName:@"HomeViewController" bundle:nil];
+        
+        customNavViewController = [[CustomNavViewController alloc]initWithRootViewController:homeViewController];
+    }
+    return customNavViewController;
+}
+
+#pragma mark - UIApplicationDelegate Methods
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    self.window.tintColor = kMainProjColor;
+    self.window.rootViewController = self.customNavViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

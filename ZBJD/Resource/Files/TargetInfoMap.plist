@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>净增收入</string>
+		<key>detail</key>
+		<array>
+			<string>当月预计净增收入</string>
+			<string>各省预计净增收入占比</string>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>用户发展量</string>
+		<key>detail</key>
+		<array>
+			<string>当月用户发展量指标</string>
+			<string>各省用户发展量指标</string>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>净增收入</string>
+		<key>detail</key>
+		<array>
+			<string>当月各省录单情况跟踪</string>
+		</array>
+	</dict>
+</array>
+</plist>
