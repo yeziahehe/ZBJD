@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		755E5B9C19FD17E400DE85F2 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B8719FD17E400DE85F2 /* PNBar.m */; };
+		755E5B9D19FD17E400DE85F2 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B8919FD17E400DE85F2 /* PNBarChart.m */; };
+		755E5B9E19FD17E400DE85F2 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B8D19FD17E400DE85F2 /* PNChartLabel.m */; };
+		755E5BA019FD17E400DE85F2 /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B9119FD17E400DE85F2 /* PNColor.m */; };
+		755E5BA119FD17E400DE85F2 /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B9319FD17E400DE85F2 /* PNLineChart.m */; };
+		755E5BA219FD17E400DE85F2 /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B9519FD17E400DE85F2 /* PNLineChartData.m */; };
+		755E5BA319FD17E400DE85F2 /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B9719FD17E400DE85F2 /* PNLineChartDataItem.m */; };
+		755E5BA419FD17E400DE85F2 /* PNPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B9919FD17E400DE85F2 /* PNPieChart.m */; };
+		755E5BA519FD17E400DE85F2 /* PNPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5B9B19FD17E400DE85F2 /* PNPieChartDataItem.m */; };
+		755E5BAA19FD1AEF00DE85F2 /* InputInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E5BA819FD1AEF00DE85F2 /* InputInfoViewController.m */; };
+		755E5BAB19FD1AEF00DE85F2 /* InputInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 755E5BA919FD1AEF00DE85F2 /* InputInfoViewController.xib */; };
 		75DD190119FA78AB0057E091 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DD190019FA78AB0057E091 /* Foundation.framework */; };
 		75DD190319FA78AB0057E091 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DD190219FA78AB0057E091 /* CoreGraphics.framework */; };
 		75DD190519FA78AB0057E091 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DD190419FA78AB0057E091 /* UIKit.framework */; };
@@ -86,6 +97,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		755E5B8619FD17E400DE85F2 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
+		755E5B8719FD17E400DE85F2 /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
+		755E5B8819FD17E400DE85F2 /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
+		755E5B8919FD17E400DE85F2 /* PNBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarChart.m; sourceTree = "<group>"; };
+		755E5B8A19FD17E400DE85F2 /* PNChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChart.h; sourceTree = "<group>"; };
+		755E5B8B19FD17E400DE85F2 /* PNChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartDelegate.h; sourceTree = "<group>"; };
+		755E5B8C19FD17E400DE85F2 /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
+		755E5B8D19FD17E400DE85F2 /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
+		755E5B9019FD17E400DE85F2 /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
+		755E5B9119FD17E400DE85F2 /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
+		755E5B9219FD17E400DE85F2 /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
+		755E5B9319FD17E400DE85F2 /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
+		755E5B9419FD17E400DE85F2 /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
+		755E5B9519FD17E400DE85F2 /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
+		755E5B9619FD17E400DE85F2 /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
+		755E5B9719FD17E400DE85F2 /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
+		755E5B9819FD17E400DE85F2 /* PNPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChart.h; sourceTree = "<group>"; };
+		755E5B9919FD17E400DE85F2 /* PNPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChart.m; sourceTree = "<group>"; };
+		755E5B9A19FD17E400DE85F2 /* PNPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChartDataItem.h; sourceTree = "<group>"; };
+		755E5B9B19FD17E400DE85F2 /* PNPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChartDataItem.m; sourceTree = "<group>"; };
+		755E5BA719FD1AEF00DE85F2 /* InputInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputInfoViewController.h; sourceTree = "<group>"; };
+		755E5BA819FD1AEF00DE85F2 /* InputInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputInfoViewController.m; sourceTree = "<group>"; };
+		755E5BA919FD1AEF00DE85F2 /* InputInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputInfoViewController.xib; sourceTree = "<group>"; };
 		75DD18FD19FA78AB0057E091 /* ZBJD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZBJD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DD190019FA78AB0057E091 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		75DD190219FA78AB0057E091 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -241,6 +275,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		755E5B8519FD17E400DE85F2 /* PNChart */ = {
+			isa = PBXGroup;
+			children = (
+				755E5B8619FD17E400DE85F2 /* PNBar.h */,
+				755E5B8719FD17E400DE85F2 /* PNBar.m */,
+				755E5B8819FD17E400DE85F2 /* PNBarChart.h */,
+				755E5B8919FD17E400DE85F2 /* PNBarChart.m */,
+				755E5B8A19FD17E400DE85F2 /* PNChart.h */,
+				755E5B8B19FD17E400DE85F2 /* PNChartDelegate.h */,
+				755E5B8C19FD17E400DE85F2 /* PNChartLabel.h */,
+				755E5B8D19FD17E400DE85F2 /* PNChartLabel.m */,
+				755E5B9019FD17E400DE85F2 /* PNColor.h */,
+				755E5B9119FD17E400DE85F2 /* PNColor.m */,
+				755E5B9219FD17E400DE85F2 /* PNLineChart.h */,
+				755E5B9319FD17E400DE85F2 /* PNLineChart.m */,
+				755E5B9419FD17E400DE85F2 /* PNLineChartData.h */,
+				755E5B9519FD17E400DE85F2 /* PNLineChartData.m */,
+				755E5B9619FD17E400DE85F2 /* PNLineChartDataItem.h */,
+				755E5B9719FD17E400DE85F2 /* PNLineChartDataItem.m */,
+				755E5B9819FD17E400DE85F2 /* PNPieChart.h */,
+				755E5B9919FD17E400DE85F2 /* PNPieChart.m */,
+				755E5B9A19FD17E400DE85F2 /* PNPieChartDataItem.h */,
+				755E5B9B19FD17E400DE85F2 /* PNPieChartDataItem.m */,
+			);
+			name = PNChart;
+			path = YFUtilities/PNChart;
+			sourceTree = "<group>";
+		};
+		755E5BA619FD19B700DE85F2 /* 详情页面 */ = {
+			isa = PBXGroup;
+			children = (
+				755E5BA719FD1AEF00DE85F2 /* InputInfoViewController.h */,
+				755E5BA819FD1AEF00DE85F2 /* InputInfoViewController.m */,
+				755E5BA919FD1AEF00DE85F2 /* InputInfoViewController.xib */,
+			);
+			name = "详情页面";
+			sourceTree = "<group>";
+		};
 		75DD18F419FA78AB0057E091 = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +405,7 @@
 				75DD193B19FA7DDC0057E091 /* MBProgressHUD */,
 				75DD193719FA7CA40057E091 /* Reachability */,
 				75DD19ED19FBD2620057E091 /* pop */,
+				755E5B8519FD17E400DE85F2 /* PNChart */,
 			);
 			name = YFUtilities;
 			sourceTree = "<group>";
@@ -434,6 +507,7 @@
 				75DD197219FABED40057E091 /* MoreViewController.h */,
 				75DD197319FABED40057E091 /* MoreViewController.m */,
 				75DD197419FABED40057E091 /* MoreViewController.xib */,
+				755E5BA619FD19B700DE85F2 /* 详情页面 */,
 			);
 			name = "更多";
 			sourceTree = "<group>";
@@ -645,6 +719,7 @@
 				75DD191319FA78AB0057E091 /* Images.xcassets in Resources */,
 				75DD1A5A19FC22730057E091 /* bg_dot@2x.png in Resources */,
 				75DD194219FA7E8A0057E091 /* YFProgressHUD.bundle in Resources */,
+				755E5BAB19FD1AEF00DE85F2 /* InputInfoViewController.xib in Resources */,
 				75DD197019FABCBE0057E091 /* icon_refresh_home@3x.png in Resources */,
 				75DD196919FABA5E0057E091 /* icon_header_back_blur@2x.png in Resources */,
 				75DD197E19FB5E930057E091 /* MonthDevelopNumViewController.xib in Resources */,
@@ -668,8 +743,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				755E5B9C19FD17E400DE85F2 /* PNBar.m in Sources */,
 				75DD198B19FB76450057E091 /* MonthDevelopNumView.m in Sources */,
 				75DD1A2C19FBD2620057E091 /* POPAnimationRuntime.mm in Sources */,
+				755E5BA019FD17E400DE85F2 /* PNColor.m in Sources */,
 				75DD1A3719FBD2620057E091 /* POPSpringAnimation.mm in Sources */,
 				75DD1A3319FBD2620057E091 /* POPGeometry.mm in Sources */,
 				75DD1A2A19FBD2620057E091 /* POPAnimationEvent.mm in Sources */,
@@ -677,6 +754,7 @@
 				75DD1A2B19FBD2620057E091 /* POPAnimationExtras.mm in Sources */,
 				75DD1A2819FBD2620057E091 /* POPAnimatableProperty.mm in Sources */,
 				75DD1A2919FBD2620057E091 /* POPAnimation.mm in Sources */,
+				755E5BA319FD17E400DE85F2 /* PNLineChartDataItem.m in Sources */,
 				75DD1A5419FBF2F50057E091 /* SBJsonWriter.m in Sources */,
 				75DD196119FAB2140057E091 /* BaseViewController.m in Sources */,
 				75DD1A5019FBF2F50057E091 /* NSString+SBJSON.m in Sources */,
@@ -685,6 +763,7 @@
 				75DD194A19FA80970057E091 /* CustomNavViewController.m in Sources */,
 				75DD19EC19FB86210057E091 /* YFCommon.m in Sources */,
 				75DD1A5219FBF2F50057E091 /* SBJsonBase.m in Sources */,
+				755E5BA419FD17E400DE85F2 /* PNPieChart.m in Sources */,
 				75DD1A3919FBD2620057E091 /* TransformationMatrix.cpp in Sources */,
 				75DD1A2F19FBD2620057E091 /* POPBasicAnimation.mm in Sources */,
 				75DD196419FAB3780057E091 /* BaseMenuViewController.m in Sources */,
@@ -694,19 +773,25 @@
 				75DD195419FA849C0057E091 /* HomeViewController.m in Sources */,
 				75DD1A3619FBD2620057E091 /* POPPropertyAnimation.mm in Sources */,
 				75DD1A5719FC052F0057E091 /* Salary.m in Sources */,
+				755E5BA219FD17E400DE85F2 /* PNLineChartData.m in Sources */,
 				75DD199B19FB79F80057E091 /* YFDownloaderManager.m in Sources */,
 				75DD1A3D19FBE6340057E091 /* Develop.m in Sources */,
 				75DD1A2E19FBD2620057E091 /* POPAnimator.mm in Sources */,
+				755E5BA119FD17E400DE85F2 /* PNLineChart.m in Sources */,
+				755E5B9E19FD17E400DE85F2 /* PNChartLabel.m in Sources */,
 				75DD199519FB797E0057E091 /* DataManager.m in Sources */,
 				75DD1A4F19FBF2F50057E091 /* NSObject+SBJSON.m in Sources */,
 				75DD1A3819FBD2620057E091 /* POPVector.mm in Sources */,
 				75DD1A3419FBD2620057E091 /* POPLayerExtras.mm in Sources */,
 				75DD199A19FB79F80057E091 /* YFDownloader.m in Sources */,
+				755E5BA519FD17E400DE85F2 /* PNPieChartDataItem.m in Sources */,
 				75DD197D19FB5E930057E091 /* MonthDevelopNumViewController.m in Sources */,
 				75DD193E19FA7DDC0057E091 /* MBProgressHUD.m in Sources */,
+				755E5BAA19FD1AEF00DE85F2 /* InputInfoViewController.m in Sources */,
 				75DD1A5119FBF2F50057E091 /* SBJSON.m in Sources */,
 				75DD1A2D19FBD2620057E091 /* POPAnimationTracer.mm in Sources */,
 				75DD1A3519FBD2620057E091 /* POPMath.mm in Sources */,
+				755E5B9D19FD17E400DE85F2 /* PNBarChart.m in Sources */,
 				75DD1A3019FBD2620057E091 /* POPCGUtils.mm in Sources */,
 				75DD197519FABED40057E091 /* MoreViewController.m in Sources */,
 				75DD199119FB78030057E091 /* MonthDevelopNumTableViewCell.m in Sources */,

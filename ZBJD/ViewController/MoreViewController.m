@@ -7,6 +7,7 @@
 //
 
 #import "MoreViewController.h"
+#import "InputInfoViewController.h"
 
 @interface MoreViewController ()
 @property (nonatomic, strong) NSArray *targetInfoArray;
@@ -101,7 +102,38 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    switch (indexPath.section) {
+        case 0:
+        {
+            if (indexPath.row == 0) {
+                //
+            }
+            else if (indexPath.row == 1) {
+                //
+            }
+        }
+            break;
+            
+        case 1:
+        {
+            if (indexPath.row == 0) {
+                //
+            }
+            else if (indexPath.row == 1) {
+                //
+            }
+        }
+            break;
+            
+        case 2:
+        {
+            InputInfoViewController *iivc = [[InputInfoViewController alloc]initWithNibName:@"InputInfoViewController" bundle:nil];
+            [self.navigationController pushViewController:iivc animated:YES];
+        }
+            
+        default:
+            break;
+    }
 }
 
 @end
