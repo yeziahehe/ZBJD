@@ -47,7 +47,7 @@
 		_innerCircleRadius  = CGRectGetWidth(self.bounds)/6;
 		
 		_descriptionTextColor = [UIColor whiteColor];
-		_descriptionTextFont  = [UIFont fontWithName:@"Avenir-Medium" size:18.0];
+		_descriptionTextFont  = [UIFont fontWithName:@"Avenir-Medium" size:12];
         _descriptionTextShadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
         _descriptionTextShadowOffset =  CGSizeMake(0, 1);
 		_duration = 1.0;
@@ -123,10 +123,7 @@
     
 	_currentTotal += currentDataItem.value;
 	
-    NSString *titleText = currentDataItem.textDescription;
-    if(!titleText){
-        titleText = [NSString stringWithFormat:@"%.0f%%",currentDataItem.value/ _total * 100];
-    }
+    NSString *titleText = [NSString stringWithFormat:@"%@\n%.1f%%",currentDataItem.textDescription,currentDataItem.value/ _total * 100];
     
     CGPoint center = CGPointMake(_outterCircleRadius + distance * sin(rad),
                                  _outterCircleRadius - distance * cos(rad));
@@ -144,6 +141,7 @@
     [descriptionLabel setCenter:center];
     [descriptionLabel setAlpha:0];
     [descriptionLabel setBackgroundColor:[UIColor clearColor]];
+    [descriptionLabel setNumberOfLines:2];
 	
 	return descriptionLabel;
 }

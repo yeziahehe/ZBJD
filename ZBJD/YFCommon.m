@@ -100,4 +100,18 @@
     [self showWithMessage:startMessage customView:[[UIImageView alloc]initWithImage:HUD_IMAGE_ERROR] hideDelay:delay];
 }
 
++ (UIImage *)imageFromColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context,
+                                   [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
 @end

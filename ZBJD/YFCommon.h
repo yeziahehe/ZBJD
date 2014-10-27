@@ -31,4 +31,11 @@
 - (void)showSuccessViewWithMessage:(NSString *)startMessage hideDelay:(CGFloat)delay;
 - (void)showFailureViewWithMessage:(NSString *)startMessage hideDelay:(CGFloat)delay;
 
+/**
+ 将UIColor转变为UIImage
+ @param color UIColor
+ @return UIImage
+ */
++ (UIImage *)imageFromColor:(UIColor *)color;
+
 @end

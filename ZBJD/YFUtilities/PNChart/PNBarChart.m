@@ -14,6 +14,7 @@
 @interface PNBarChart () {
     NSMutableArray *_labels;
 }
+@property (nonatomic)UIScrollView *contentScrollView;
 
 - (UIColor *)barColorAtIndex:(NSUInteger)index;
 
@@ -42,6 +43,10 @@
         _barRadius           = 2.0;
         _showChartBorder     = NO;
         _yChartLabelWidth    = 18;
+        _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(self.frame.origin.x+_yChartLabelWidth, 0, 320-_yChartLabelWidth, self.frame.size.height)];
+        [_contentScrollView setContentSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
+        [_contentScrollView setShowsHorizontalScrollIndicator:NO];
+        [self addSubview:_contentScrollView];
     }
 
     return self;
@@ -114,14 +119,14 @@
                 [label setTextAlignment:NSTextAlignmentCenter];
                 label.text = labelText;
                 [label sizeToFit];
-                CGFloat labelXPosition  = (index *  _xLabelWidth + _chartMargin + _xLabelWidth /2.0 );
+                CGFloat labelXPosition  = (index *  _xLabelWidth + _xLabelWidth /2.0 );
                 
                 label.center = CGPointMake(labelXPosition,
                                            self.frame.size.height - xLabelHeight - _chartMargin + label.frame.size.height /2.0 + _labelMarginTop);
                 labelAddCount = 0;
                 
                 [_labels addObject:label];
-                [self addSubview:label];
+                [_contentScrollView addSubview:label];
             }
         }
         
@@ -171,9 +176,9 @@
         
         if (_barWidth) {
             barWidth = _barWidth;
-            barXPosition = index *  _xLabelWidth + _chartMargin + _xLabelWidth /2.0 - _barWidth /2.0;
+            barXPosition = index *  _xLabelWidth + _xLabelWidth /2.0 - _barWidth /2.0;
         }else{
-            barXPosition = index *  _xLabelWidth + _chartMargin + _xLabelWidth * 0.25;
+            barXPosition = index *  _xLabelWidth + _xLabelWidth * 0.25;
             if (_showLabel) {
                 barWidth = _xLabelWidth * 0.5;
                 
@@ -214,7 +219,7 @@
         
         
         [_bars addObject:bar];
-        [self addSubview:bar];
+        [_contentScrollView addSubview:bar];
 
         index += 1;
     }
@@ -250,7 +255,7 @@
         
         _chartBottomLine.strokeEnd = 1.0;
         
-        [self.layer addSublayer:_chartBottomLine];
+        [_contentScrollView.layer addSublayer:_chartBottomLine];
         
         //Add left Chart Line
         
@@ -282,7 +287,7 @@
         
         _chartLeftLine.strokeEnd = 1.0;
         
-        [self.layer addSublayer:_chartLeftLine];
+        [_contentScrollView.layer addSublayer:_chartLeftLine];
     }
 }
 
@@ -305,28 +310,6 @@
     }
     else {
         return self.strokeColor;
-    }
-}
-
-
-#pragma mark - Touch detection
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self touchPoint:touches withEvent:event];
-    [super touchesBegan:touches withEvent:event];
-}
-
-
-- (void)touchPoint:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //Get the point user touched
-    UITouch *touch = [touches anyObject];
-    CGPoint touchPoint = [touch locationInView:self];
-    UIView *subview = [self hitTest:touchPoint withEvent:nil];
-    
-    if ([subview isKindOfClass:[PNBar class]] && [self.delegate respondsToSelector:@selector(userClickedOnBarCharIndex:)]) {
-        [self.delegate userClickedOnBarCharIndex:subview.tag];
     }
 }
 

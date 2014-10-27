@@ -8,6 +8,7 @@
 
 #import "MoreViewController.h"
 #import "InputInfoViewController.h"
+#import "SalaryByProvinceViewController.h"
 
 @interface MoreViewController ()
 @property (nonatomic, strong) NSArray *targetInfoArray;
@@ -109,7 +110,8 @@
                 //
             }
             else if (indexPath.row == 1) {
-                //
+                SalaryByProvinceViewController *sbpvc = [[SalaryByProvinceViewController alloc]initWithNibName:@"SalaryByProvinceViewController" bundle:nil];
+                [self.navigationController pushViewController:sbpvc animated:YES];
             }
         }
             break;
