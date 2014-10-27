@@ -10,11 +10,11 @@
 #import "PNPieChart.h"
 
 @interface SalaryByProvinceViewController ()
-
+@property (nonatomic, strong) NSArray *salaryArray;
 @end
 
 @implementation SalaryByProvinceViewController
-@synthesize titleLabel,judgeLabel;
+@synthesize titleLabel,judgeLabel,salaryArray;
 
 #pragma mark - Private Methods
 - (void)initLabel
@@ -34,6 +34,7 @@
         self.judgeLabel.hidden = YES;
         self.titleLabel.text = [NSString stringWithFormat:@"%@月份各省净增收入",date_Month];
         //使用已经加载好的本月数据
+        self.salaryArray = [DataManager sharedManager].salaryInfoInThisMonthByProvince;
         [self loadSubViewWithData];
     }
 }
@@ -43,12 +44,12 @@
     NSMutableArray *items = [NSMutableArray array];
     CGFloat g = 56.f;
     BOOL flag = NO;
-    for (Salary *s in [DataManager sharedManager].salaryInfoInThisMonthByProvince) {
+    for (Salary *s in self.salaryArray) {
         if ([s.finish floatValue] >= 0) {
             [items addObject:[PNPieChartDataItem dataItemWithValue:[s.finish floatValue] color:[UIColor colorWithRed:255.f/255.f green:g/255.f blue:0.f/255.f alpha:1.0f] description:s.province]];
             g += 10.f;
         } else {
-            [items addObject:[PNPieChartDataItem dataItemWithValue:-[s.finish floatValue] color:[UIColor colorWithRed:170.f/255.f green:170.f/255.f blue:170.f/255.f alpha:1.0f] description:s.province]];
+            [items addObject:[PNPieChartDataItem dataItemWithValue:-[s.finish floatValue] color:TextLightGray description:s.province]];
             flag = YES;
         }
     }
@@ -59,18 +60,18 @@
     pieChart.descriptionTextShadowColor = [UIColor clearColor];
     [pieChart strokeChart];
     
+    [self.view addSubview:pieChart];
+    
     if (flag) {
         UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(40.f, pieChart.frame.size.height + pieChart.frame.origin.y + 40, ScreenWidth - 40.f, 20.f)];
         tipLabel.text = @"表示该省份净增收入为负值";
         tipLabel.font = [UIFont systemFontOfSize:12.f];
-        tipLabel.textColor = [UIColor colorWithRed:170.f/255.f green:170.f/255.f blue:170.f/255.f alpha:1.0f];
+        tipLabel.textColor = TextLightGray;
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(25.f, pieChart.frame.size.height + pieChart.frame.origin.y + 5.f + 40.f, 10.f, 10.f)];
-        imageView.image = [YFCommon imageFromColor:[UIColor colorWithRed:170.f/255.f green:170.f/255.f blue:170.f/255.f alpha:1.0f]];
+        imageView.image = [YFCommon imageFromColor:TextLightGray];
         [self.view addSubview:tipLabel];
         [self.view addSubview:imageView];
     }
-    
-    [self.view addSubview:pieChart];
 }
 
 #pragma mark - UIViewControllerView Methods

@@ -15,6 +15,11 @@
 #define HUD_IMAGE_SUCCESS      [UIImage imageNamed:@"YFProgressHUD.bundle/success.png"]
 #define HUD_IMAGE_ERROR        [UIImage imageNamed:@"YFProgressHUD.bundle/error.png"]
 
+#define TextBlack       [UIColor colorWithRed:30.f/255.f green:30.f/255.f blue:30.f/255.f alpha:1.0]
+#define TextLightGray   [UIColor colorWithRed:175.f/255.f green:175.f/255.f blue:175.f/255.f alpha:1.0f]
+#define LightRed        [UIColor colorWithRed:255.f/255.f green:56.f/255.f blue:0.f/255.f alpha:1.0f]
+#define LightGrey       [UIColor colorWithRed:225.f/255.f green:225.f/255.f blue:225.f/255.f alpha:1.0f]
+
 @interface YFCommon : NSObject
 
 + (YFCommon *)sharedProgressHUD;

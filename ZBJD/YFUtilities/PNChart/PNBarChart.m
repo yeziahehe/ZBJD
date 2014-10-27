@@ -37,12 +37,12 @@
         _labels              = [NSMutableArray array];
         _bars                = [NSMutableArray array];
         _xLabelSkip          = 1;
-        _yLabelSum           = 4;
+        _yLabelSum           = 6;
         _labelMarginTop      = 0;
         _chartMargin         = 15.0;
         _barRadius           = 2.0;
         _showChartBorder     = NO;
-        _yChartLabelWidth    = 18;
+        _yChartLabelWidth    = 30;
         _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(self.frame.origin.x+_yChartLabelWidth, 0, 320-_yChartLabelWidth, self.frame.size.height)];
         [_contentScrollView setContentSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
         [_contentScrollView setShowsHorizontalScrollIndicator:NO];

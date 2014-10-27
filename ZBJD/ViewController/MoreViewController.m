@@ -8,6 +8,7 @@
 
 #import "MoreViewController.h"
 #import "InputInfoViewController.h"
+#import "SalaryByMonthViewController.h"
 #import "SalaryByProvinceViewController.h"
 
 @interface MoreViewController ()
@@ -72,7 +73,7 @@
     }
     NSDictionary *dict = [self.targetInfoArray objectAtIndex:indexPath.section];
     cell.textLabel.text = [[dict objectForKey:@"detail"]objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [UIColor colorWithRed:30.f/255.f green:30.f/255.f blue:30.f/255.f alpha:1.0];
+    cell.textLabel.textColor = TextBlack;
     
     return cell;
 }
@@ -94,7 +95,7 @@
     NSDictionary *dict = [self.targetInfoArray objectAtIndex:section];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f, 0, 200.f, 30.f)];
     label.font = [UIFont systemFontOfSize:12.f];
-    label.textColor = [UIColor colorWithRed:175.f/255.f green:175.f/255.f blue:175.f/255.f alpha:1.0f];
+    label.textColor = TextLightGray;
     label.backgroundColor = [UIColor clearColor];
     label.text = [dict objectForKey:@"title"];
     [sectionView addSubview:label];
@@ -107,7 +108,8 @@
         case 0:
         {
             if (indexPath.row == 0) {
-                //
+                SalaryByMonthViewController *sbmvc = [[SalaryByMonthViewController alloc]initWithNibName:@"SalaryByMonthViewController" bundle:nil];
+                [self.navigationController pushViewController:sbmvc animated:YES];
             }
             else if (indexPath.row == 1) {
                 SalaryByProvinceViewController *sbpvc = [[SalaryByProvinceViewController alloc]initWithNibName:@"SalaryByProvinceViewController" bundle:nil];

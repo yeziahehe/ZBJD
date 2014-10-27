@@ -53,7 +53,7 @@
         _chartLine.strokeColor = [_barColor CGColor];
     }
     else {
-        _chartLine.strokeColor = [PNGreen CGColor];
+        _chartLine.strokeColor = [LightRed CGColor];
     }
 
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -82,7 +82,7 @@
         gradientLayer.startPoint = CGPointMake(0.5,1.0);
         gradientLayer.endPoint = CGPointMake(0.5,0.0);
         gradientLayer.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-        UIColor *endColor = (_barColor ? _barColor : [UIColor greenColor]);
+        UIColor *endColor = (_barColor ? _barColor : LightRed);
         NSArray *colors = @[
                             (id)_barColorGradientStart.CGColor,
                             (id)endColor.CGColor
