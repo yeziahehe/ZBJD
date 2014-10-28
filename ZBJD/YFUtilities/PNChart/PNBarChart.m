@@ -16,6 +16,14 @@
 }
 @property (nonatomic)UIScrollView *contentScrollView;
 
+//=====================YF custom
+@property (nonatomic) CAShapeLayer *chartLineLayer;  // Array[CAShapeLayer]
+@property (nonatomic) CAShapeLayer *chartPointLayer; // Array[CAShapeLayer] save the point layer
+
+@property (nonatomic) NSMutableArray *chartPath;       // Array of line path, one for each line.
+@property (nonatomic) NSMutableArray *pointPath;       // Array of point path, one for each line
+//=====================YF custom
+
 - (UIColor *)barColorAtIndex:(NSUInteger)index;
 
 @end
@@ -31,6 +39,7 @@
         self.backgroundColor = [UIColor whiteColor];
         self.clipsToBounds   = YES;
         _showLabel           = YES;
+        _showLine            = NO;
         _barBackgroundColor  = PNLightGrey;
         _labelTextColor      = [UIColor grayColor];
         _labelFont           = [UIFont systemFontOfSize:11.0f];
@@ -41,7 +50,6 @@
         _labelMarginTop      = 0;
         _chartMargin         = 15.0;
         _barRadius           = 2.0;
-        _showChartBorder     = NO;
         _yChartLabelWidth    = 30;
         _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(self.frame.origin.x+_yChartLabelWidth, 0, 320-_yChartLabelWidth, self.frame.size.height)];
         [_contentScrollView setContentSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
@@ -93,6 +101,22 @@
         _xLabelWidth = (self.frame.size.width - _chartMargin * 2) / [xLabels count];
     }
 }
+
+//=====================YF custom
+- (void)setLineValues:(NSArray *)lineValues
+{
+    _lineValues = lineValues;
+    
+    NSMutableArray *array = [NSMutableArray arrayWithArray:_yValues];
+    [array addObjectsFromArray:_lineValues];
+    
+    if (_yMaxValue) {
+        _yValueMax = _yMaxValue;
+    }else{
+        [self getYValueMax:array];
+    }
+}
+//=====================YF custom
 
 
 - (void)setStrokeColor:(UIColor *)strokeColor
@@ -224,71 +248,156 @@
         index += 1;
     }
     
-    //Add chart border lines
+    //=====================YF custom
+    if (_showLine) {
+        NSMutableArray *yLabelsArray = [NSMutableArray arrayWithCapacity:_yValues.count];
+        CGFloat yMax = 0.0f;
+        CGFloat yMin = MAXFLOAT;
+        CGFloat yValue;
+        
+        // remove all shape layers before adding new ones
+        
+        [_chartLineLayer removeFromSuperlayer];
+        [_chartPointLayer removeFromSuperlayer];
+        
+        
+        // set for point stoken
+        // create as many chart line layers as there are data-lines
+        CAShapeLayer *chartLine = [CAShapeLayer layer];
+        chartLine.lineCap       = kCALineCapButt;
+        chartLine.lineJoin      = kCALineJoinMiter;
+        chartLine.fillColor     = [[UIColor whiteColor] CGColor];
+        chartLine.lineWidth     = 2.f;
+        chartLine.strokeEnd     = 0.0;
+        [_contentScrollView.layer addSublayer:chartLine];
+        _chartLineLayer = chartLine;
+        
+        // create point
+        CAShapeLayer *pointLayer = [CAShapeLayer layer];
+        pointLayer.strokeColor   = [[UIColor redColor] CGColor];
+        pointLayer.lineCap       = kCALineCapRound;
+        pointLayer.lineJoin      = kCALineJoinBevel;
+        pointLayer.fillColor     = nil;
+        pointLayer.lineWidth     = 2.f;
+        [_contentScrollView.layer addSublayer:pointLayer];
+        _chartPointLayer = pointLayer;
+        
+        for (NSUInteger i = 0; i < _yValues.count; i++) {
+            yValue = [[_yValues objectAtIndex:i]floatValue];
+            [yLabelsArray addObject:[NSString stringWithFormat:@"%2f", yValue]];
+            yMax = fmaxf(yMax, yValue);
+            yMin = fminf(yMin, yValue);
+        }
+        
+        [self setNeedsDisplay];
+    }
     
-    if (_showChartBorder) {
-        _chartBottomLine = [CAShapeLayer layer];
-        _chartBottomLine.lineCap      = kCALineCapButt;
-        _chartBottomLine.fillColor    = [[UIColor whiteColor] CGColor];
-        _chartBottomLine.lineWidth    = 1.0;
-        _chartBottomLine.strokeEnd    = 0.0;
+    //add lines
+    if (_showLine) {
+        _chartPath = [[NSMutableArray alloc] init];
+        _pointPath = [[NSMutableArray alloc] init];
         
+        CAShapeLayer *chartLine = _chartLineLayer;
+        CAShapeLayer *pointLayer = _chartPointLayer;
+        
+        float yValue;
+        float innerGrade;
+        CGFloat chartCavanHeight = self.frame.size.height - _chartMargin * 2 - xLabelHeight;
+        
+        UIGraphicsBeginImageContext(self.frame.size);
+        
+        CGFloat lineWidth = 2.f;
         UIBezierPath *progressline = [UIBezierPath bezierPath];
+        [progressline setLineWidth:lineWidth];
+        [progressline setLineCapStyle:kCGLineCapRound];
+        [progressline setLineJoinStyle:kCGLineJoinRound];
         
-        [progressline moveToPoint:CGPointMake(_chartMargin, self.frame.size.height - xLabelHeight - _chartMargin)];
-        [progressline addLineToPoint:CGPointMake(self.frame.size.width - _chartMargin,  self.frame.size.height - xLabelHeight - _chartMargin)];
+        UIBezierPath *pointPath = [UIBezierPath bezierPath];
+        [pointPath setLineWidth:lineWidth];
         
-        [progressline setLineWidth:1.0];
-        [progressline setLineCapStyle:kCGLineCapSquare];
-        _chartBottomLine.path = progressline.CGPath;
+        [_chartPath addObject:progressline];
+        [_pointPath addObject:pointPath];
         
+        NSMutableArray *linePointsArray = [[NSMutableArray alloc] init];
         
-        _chartBottomLine.strokeColor = PNLightGrey.CGColor;
+        int last_x = 0;
+        int last_y = 0;
+        CGFloat inflexionWidth = 6.0f;
         
+        for (NSUInteger i = 0; i < _lineValues.count; i++) {
+            
+            yValue = [[_lineValues objectAtIndex:i] floatValue];
+            innerGrade = (float)yValue / (float)_yValueMax;
+            if (isnan(innerGrade)) {
+                innerGrade = 0;
+            }
+            
+            CGFloat barXPosition;
+            if (_barWidth) {
+                barXPosition = i *  _xLabelWidth + _xLabelWidth /2.0;
+            }else{
+                barXPosition = i *  _xLabelWidth + _xLabelWidth * 0.5;
+            }
+            
+            int x = barXPosition;
+            int y = chartCavanHeight - (innerGrade * chartCavanHeight) + yLabelHeight*1.5;
+            
+            // cycle style point
+            CGRect circleRect = CGRectMake(x - inflexionWidth / 2, y - inflexionWidth / 2, inflexionWidth, inflexionWidth);
+            CGPoint circleCenter = CGPointMake(circleRect.origin.x + (circleRect.size.width / 2), circleRect.origin.y + (circleRect.size.height / 2));
+            
+            [pointPath moveToPoint:CGPointMake(circleCenter.x + (inflexionWidth / 2), circleCenter.y)];
+            [pointPath addArcWithCenter:circleCenter radius:inflexionWidth / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+            
+            if ( i != 0 ) {
+                
+                // calculate the point for line
+                float distance = sqrt(pow(x - last_x, 2) + pow(y - last_y, 2) );
+                float last_x1 = last_x + (inflexionWidth / 2) / distance * (x - last_x);
+                float last_y1 = last_y + (inflexionWidth / 2) / distance * (y - last_y);
+                float x1 = x - (inflexionWidth / 2) / distance * (x - last_x);
+                float y1 = y - (inflexionWidth / 2) / distance * (y - last_y);
+                
+                [progressline moveToPoint:CGPointMake(last_x1, last_y1)];
+                [progressline addLineToPoint:CGPointMake(x1, y1)];
+            }
+            
+            last_x = x;
+            last_y = y;
+            
+            [linePointsArray addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
+        }
         
+        // setup the color of the chart line
+        chartLine.strokeColor = [PNGreen CGColor];
+        pointLayer.strokeColor = [PNGreen CGColor];
+        
+        [progressline stroke];
+        
+        chartLine.path = progressline.CGPath;
+        pointLayer.path = pointPath.CGPath;
+        
+        [CATransaction begin];
         CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        pathAnimation.duration = 0.5;
+        pathAnimation.duration = 1.0;
         pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         pathAnimation.fromValue = @0.0f;
-        pathAnimation.toValue = @1.0f;
-        [_chartBottomLine addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
+        pathAnimation.toValue   = @1.0f;
         
-        _chartBottomLine.strokeEnd = 1.0;
+        [chartLine addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
+        chartLine.strokeEnd = 1.0;
         
-        [_contentScrollView.layer addSublayer:_chartBottomLine];
+        // if you want cancel the point animation, conment this code, the point will show immediately
+        [pointLayer addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
         
-        //Add left Chart Line
+        [CATransaction setCompletionBlock:^{
+            // pointLayer.strokeEnd = 1.0f; // stroken point when animation end
+        }];
+        [CATransaction commit];
         
-        _chartLeftLine = [CAShapeLayer layer];
-        _chartLeftLine.lineCap      = kCALineCapButt;
-        _chartLeftLine.fillColor    = [[UIColor whiteColor] CGColor];
-        _chartLeftLine.lineWidth    = 1.0;
-        _chartLeftLine.strokeEnd    = 0.0;
-        
-        UIBezierPath *progressLeftline = [UIBezierPath bezierPath];
-        
-        [progressLeftline moveToPoint:CGPointMake(_chartMargin, self.frame.size.height - xLabelHeight - _chartMargin)];
-        [progressLeftline addLineToPoint:CGPointMake(_chartMargin,  _chartMargin)];
-        
-        [progressLeftline setLineWidth:1.0];
-        [progressLeftline setLineCapStyle:kCGLineCapSquare];
-        _chartLeftLine.path = progressLeftline.CGPath;
-        
-        
-        _chartLeftLine.strokeColor = PNLightGrey.CGColor;
-        
-        
-        CABasicAnimation *pathLeftAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        pathLeftAnimation.duration = 0.5;
-        pathLeftAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        pathLeftAnimation.fromValue = @0.0f;
-        pathLeftAnimation.toValue = @1.0f;
-        [_chartLeftLine addAnimation:pathLeftAnimation forKey:@"strokeEndAnimation"];
-        
-        _chartLeftLine.strokeEnd = 1.0;
-        
-        [_contentScrollView.layer addSublayer:_chartLeftLine];
+        UIGraphicsEndImageContext();
     }
+    //=====================YF custom
 }
 
 

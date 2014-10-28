@@ -36,6 +36,10 @@ typedef NSString *(^PNyLabelFromatter)(CGFloat yLabelValue);
 @property (nonatomic) UIColor *strokeColor;
 @property (nonatomic) NSArray *strokeColors;
 
+//=====================YF custom
+@property (nonatomic) NSArray *lineValues;
+@property (nonatomic) BOOL showLine;
+//=====================YF custom
 
 /*
  chartMargin changes chart margin
@@ -57,11 +61,6 @@ typedef NSString *(^PNyLabelFromatter)(CGFloat yLabelValue);
  showLabelDefines if the Labels should be deplay
  */
 @property (nonatomic) BOOL showLabel;
-
-/*
- showChartBorder if the chart border Line should be deplay
- */
-@property (nonatomic) BOOL showChartBorder;
 
 /*
  chartBottomLine the Line at the chart bottom
