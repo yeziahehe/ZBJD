@@ -14,7 +14,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "Constant.h"
-    #import "Reachability.h"
     #import "YFUtils.h"
     #import "JSON.h"
     #import "DataManager.h"
