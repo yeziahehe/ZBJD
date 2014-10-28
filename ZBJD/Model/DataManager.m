@@ -9,12 +9,12 @@
 #import "DataManager.h"
 
 @implementation DataManager
-@synthesize developInfoInThisMonthByDay,salaryInfoInThisMonthByProvince,developInfoInRecentMonthByDay;
+@synthesize developInfoInThisMonthByDay,salaryInfoInThisMonthByProvince,developInfoInRecentMonthByDay,inputInfoThisMotnByProvince;
 
 #pragma mark - Public Methods
 - (void)requestForDevelopInfoInThisMonthByDay
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDevelopThisMonthByDay];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDevelopThisMonthByDayUrl];
     [[YFDownloaderManager sharedManager]requestDataByGetWithURLString:url
                                                              delegate:self
                                                               purpose:kDevelopInfoInThisMonthByDayDownloaderKey];
@@ -22,7 +22,7 @@
 
 - (void)requestForSalaryInfoInThisMonthByProvince
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kSalaryThisMonthByProvince];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kSalaryThisMonthByProvinceUrl];
     [[YFDownloaderManager sharedManager]requestDataByGetWithURLString:url
                                                              delegate:self
                                                               purpose:kSalaryInfoInThisMonthByProvinceDownloaderKey];
@@ -30,10 +30,18 @@
 
 - (void)requestForDevelopInfoInRecentMonthByDay
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kRecentThisMonthByDay];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kRecentThisMonthByDayUrl];
     [[YFDownloaderManager sharedManager]requestDataByGetWithURLString:url
                                                              delegate:self
                                                               purpose:kDevelopInfoInRecentMonthByDayDownloaderKey];
+}
+
+- (void)requestForInputInfoInThisMonthByProvince
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kInputThisMotnByProvinceUrl];
+    [[YFDownloaderManager sharedManager]requestDataByGetWithURLString:url
+                                                             delegate:self
+                                                              purpose:kInputInfoThisMotnByProvinceDownloaderKey];
 }
 
 #pragma mark - Singleton Methods
@@ -112,6 +120,26 @@
         else
         {
             NSString *message = @"日均发展量获取失败!";
+            [[YFCommon sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kInputInfoThisMotnByProvinceDownloaderKey]) {
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSDictionary *dict = [str JSONValue];
+        if (![[dict objectForKey:@"data"] isKindOfClass:[NSNull class]])
+        {
+            self.inputInfoThisMotnByProvince = [[NSMutableArray alloc]init];
+            NSArray *valueArray = (NSArray *)[dict objectForKey:@"data"];
+            for(NSDictionary *valueDict in valueArray)
+            {
+                Input *i = [[Input alloc]initWithDict:valueDict];
+                [self.inputInfoThisMotnByProvince addObject:i];
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:kInputInfoThisMotnByProvinceNotification object:nil];
+        }
+        else
+        {
+            NSString *message = @"各省录单情况获取失败!";
             [[YFCommon sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

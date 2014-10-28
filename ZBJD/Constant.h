@@ -23,11 +23,13 @@
 #define kDevelopInfoInThisMonthbyDayNotification        @"DevelopInfoInThisMonthbyDayNotification"
 #define kSalaryInfoInThisMonthByProvinceNotification    @"SalaryInfoInThisMonthByProvinceNotification"
 #define kDevelopInfoInRecentMonthByDayNotification      @"DevelopInfoInRecentMonthByDayNotification"
+#define kInputInfoThisMotnByProvinceNotification        @"InputInfoThisMotnByProvinceNotification"
 
 //Url Values
 #define kServerAddress              @"http://m.10001.name:9080/flow-log-worker/flowlog?"
-#define kDevelopThisMonthByDay      @"cmd=develop.develop.info.target&flag=1&index=1"
-#define kSalaryThisMonthByProvince  @"cmd=develop.collection.payment.target"
-#define kRecentThisMonthByDay       @"cmd=develop.develop.info.target&flag=1&index=0"
+#define kDevelopThisMonthByDayUrl      @"cmd=develop.develop.info.target&flag=1&index=1"
+#define kSalaryThisMonthByProvinceUrl  @"cmd=develop.collection.payment.target"
+#define kRecentThisMonthByDayUrl       @"cmd=develop.develop.info.target&flag=1&index=0"
+#define kInputThisMotnByProvinceUrl     @"cmd=develop.input.info.target"
 
 #endif

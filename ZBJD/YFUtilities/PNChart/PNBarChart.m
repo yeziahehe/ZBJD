@@ -274,7 +274,7 @@
         
         // create point
         CAShapeLayer *pointLayer = [CAShapeLayer layer];
-        pointLayer.strokeColor   = [[UIColor redColor] CGColor];
+        pointLayer.strokeColor   = [TextLightGray CGColor];
         pointLayer.lineCap       = kCALineCapRound;
         pointLayer.lineJoin      = kCALineJoinBevel;
         pointLayer.fillColor     = nil;
@@ -369,8 +369,8 @@
         }
         
         // setup the color of the chart line
-        chartLine.strokeColor = [PNGreen CGColor];
-        pointLayer.strokeColor = [PNGreen CGColor];
+        chartLine.strokeColor = [TextLightGray CGColor];
+        pointLayer.strokeColor = [TextLightGray CGColor];
         
         [progressline stroke];
         
