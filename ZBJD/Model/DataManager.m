@@ -9,7 +9,7 @@
 #import "DataManager.h"
 
 @implementation DataManager
-@synthesize developInfoInThisMonthByDay,salaryInfoInThisMonthByProvince,developInfoInRecentMonthByDay,inputInfoThisMotnByProvince,developInfoInThisMonthByProvince;
+@synthesize developInfoInThisMonthByDay,salaryInfoInThisMonthByProvince,developInfoInRecentMonthByDay,inputInfoThisMotnByProvince,developInfoInThisMonthByProvince,salaryInfoInLastMonthByProvince;
 
 #pragma mark - Public Methods
 - (void)requestForDevelopInfoInThisMonthByDay
@@ -46,10 +46,22 @@
 
 - (void)requestForDevelopInfoInThisMonthByProvince
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kkDevelopThisMonthByProvinceUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDevelopThisMonthByProvinceUrl];
     [[YFDownloaderManager sharedManager]requestDataByGetWithURLString:url
                                                              delegate:self
                                                               purpose:kDevelopInfoInThisMonthByProvinceDownloaderKey];
+}
+
+- (void)requestForSalaryInfoInLastMonthByProvince
+{
+    NSDateFormatter *dateMonthformate=[[NSDateFormatter alloc]init];
+    [dateMonthformate setDateFormat:@"YYYY-MM-dd"];
+    NSString *lastMonthStartDate = [dateMonthformate stringFromDate:[YFCommon startOfLastMonth]];
+    NSString *lastMonthEndDate = [dateMonthformate stringFromDate:[YFCommon endOfLastMonth]];
+    NSString *url = [NSString stringWithFormat:@"%@%@&startDate=%@&endDate=%@",kServerAddress,kSalaryThisMonthByProvinceUrl,lastMonthStartDate,lastMonthEndDate];
+    [[YFDownloaderManager sharedManager]requestDataByGetWithURLString:url
+                                                             delegate:self
+                                                              purpose:kSalaryInfoInLastMonthByProvinceDownloaderKey];
 }
 
 #pragma mark - Singleton Methods
@@ -168,6 +180,26 @@
         else
         {
             NSString *message = @"各省发展量获取失败!";
+            [[YFCommon sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kSalaryInfoInLastMonthByProvinceDownloaderKey]) {
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSDictionary *dict = [str JSONValue];
+        if (![[dict objectForKey:@"data"] isKindOfClass:[NSNull class]])
+        {
+            self.salaryInfoInLastMonthByProvince = [[NSMutableArray alloc]init];
+            NSArray *valueArray = (NSArray *)[dict objectForKey:@"data"];
+            for(NSDictionary *valueDict in valueArray)
+            {
+                Salary *s = [[Salary alloc]initWithDict:valueDict];
+                [self.salaryInfoInLastMonthByProvince addObject:s];
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:kSalaryInfoInLastMonthByProvinceNotification object:nil];
+        }
+        else
+        {
+            NSString *message = @"指标进度获取失败!";
             [[YFCommon sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

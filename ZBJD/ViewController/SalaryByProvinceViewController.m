@@ -32,7 +32,7 @@
         self.judgeLabel.hidden = NO;
         self.titleLabel.text = [NSString stringWithFormat:@"%d月份各省净增收入",[date_Month intValue]-1];
         //做一次请求上月数据
-        //to do
+        [[DataManager sharedManager]requestForSalaryInfoInLastMonthByProvince];
     } else {
         self.judgeLabel.hidden = YES;
         self.titleLabel.text = [NSString stringWithFormat:@"%@月份各省净增收入",date_Month];
@@ -77,6 +77,13 @@
     }
 }
 
+#pragma mark - Notificaiton Methods
+- (void)salaryInfoInLastMonthByProvinceNotification:(NSNotification *)notification
+{
+    self.salaryArray = [DataManager sharedManager].salaryInfoInLastMonthByProvince;
+    [self loadSubViewWithData];
+}
+
 #pragma mark - UIViewControllerView Methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -93,6 +100,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setTitle:@"净增收入详情"];
     [self initLabel];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(salaryInfoInLastMonthByProvinceNotification:) name:kSalaryInfoInLastMonthByProvinceNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning

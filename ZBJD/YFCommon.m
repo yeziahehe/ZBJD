@@ -65,6 +65,29 @@
     [label pop_addAnimation:animation forKey:@"numberLabelAnimation"];
 }
 
++ (NSDate *) startOfLastMonth
+{
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    NSDate *curDate = [NSDate date];
+    NSDateComponents * currentDateComponents = [calendar components: NSYearCalendarUnit | NSMonthCalendarUnit fromDate: curDate];
+    [currentDateComponents setMonth:[currentDateComponents month]-1];
+    [currentDateComponents setDay:1];
+    NSDate * startOfLastMonth = [calendar dateFromComponents: currentDateComponents];
+    
+    return startOfLastMonth;
+}
+
++ (NSDate *) endOfLastMonth
+{
+    NSCalendar * calendar = [NSCalendar currentCalendar];
+    NSDate *curDate = [NSDate date];
+    NSDateComponents * currentDateComponents = [calendar components: NSYearCalendarUnit | NSMonthCalendarUnit fromDate: curDate];
+    [currentDateComponents setDay:0];
+    NSDate * endOfLastMonth = [calendar dateFromComponents: currentDateComponents];
+    
+    return endOfLastMonth;
+}
+
 #pragma mark - Public methods
 - (void)showWithMessage:(NSString *)message customView:(UIView *)customView hideDelay:(CGFloat)delay
 {

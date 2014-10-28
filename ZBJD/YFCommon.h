@@ -43,4 +43,7 @@
  */
 + (UIImage *)imageFromColor:(UIColor *)color;
 
++ (NSDate *) startOfLastMonth;
++ (NSDate *) endOfLastMonth;
+
 @end

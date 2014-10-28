@@ -16,6 +16,7 @@
 #define kDevelopInfoInRecentMonthByDayDownloaderKey     @"DevelopInfoInRecentMonthByDayDownloaderKey"
 #define kInputInfoThisMotnByProvinceDownloaderKey       @"InputInfoThisMotnByProvinceDownloaderKey"
 #define kDevelopInfoInThisMonthByProvinceDownloaderKey  @"DevelopInfoInThisMonthByProvinceDownloaderKey"
+#define kSalaryInfoInLastMonthByProvinceDownloaderKey       @"SalaryInfoInLastMonthByProvinceDownloaderKey"
 
 @interface DataManager : NSObject<YFDownloaderDelegate>
 
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray *developInfoInRecentMonthByDay;
 @property (nonatomic, strong) NSMutableArray *inputInfoThisMotnByProvince;
 @property (nonatomic, strong) NSMutableArray *developInfoInThisMonthByProvince;
+@property (nonatomic, strong) NSMutableArray *salaryInfoInLastMonthByProvince;
 
 + (DataManager *)sharedManager;
 
@@ -57,5 +59,10 @@
  按省份获取本月用户发展量
  */
 - (void)requestForDevelopInfoInThisMonthByProvince;
+
+/**
+ 按省份获取上月的录单情况
+ */
+- (void)requestForSalaryInfoInLastMonthByProvince;
 
 @end
