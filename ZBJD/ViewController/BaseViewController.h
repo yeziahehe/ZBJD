@@ -10,6 +10,9 @@
 
 @interface BaseViewController : UIViewController
 
+- (void)setLeftItemEnable:(BOOL)enable;
+- (void)setRightItemEnable:(BOOL)enable;
+
 - (void)leftItemTapped;
 - (void)rightItemTapped;
 /**

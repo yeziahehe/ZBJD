@@ -23,6 +23,16 @@
 - (void)rightItemTapped
 {}
 
+- (void)setLeftItemEnable:(BOOL)enable
+{
+    self.navigationItem.leftBarButtonItem.enabled = enable;
+}
+
+- (void)setRightItemEnable:(BOOL)enable
+{
+    self.navigationItem.rightBarButtonItem.enabled = enable;
+}
+
 - (void)setLeftNaviItemWithTitle:(NSString *)title imageName:(NSString *)imageName
 {
     if(imageName)

@@ -74,6 +74,7 @@
     [YFCommon animationPopToLabel:self.dayDevelopLabel withValue:developNum/self.developArray.count];
     [YFCommon animationPopToLabel:self.monthCancelLabel withValue:cancelNum];
     [YFCommon animationPopToLabel:self.dayCancelLabel withValue:cancelNum/self.developArray.count];
+    [self setLeftItemEnable:YES];
 }
 
 - (void)salaryInfoInThisMonthByProvinceNotification:(NSNotification *)notification
@@ -84,6 +85,7 @@
         salaryNum += [s.finish integerValue];
     }
     [YFCommon animationPopToLabel:self.salaryLabel withValue:salaryNum];
+    [self setLeftItemEnable:YES];
 }
 
 #pragma mark - IBAction Methods
@@ -116,6 +118,7 @@
 {
     [[DataManager sharedManager] requestForDevelopInfoInThisMonthByDay];
     [[DataManager sharedManager] requestForSalaryInfoInThisMonthByProvince];
+    [self setLeftItemEnable:NO];
 }
 
 - (void)rightItemTapped
