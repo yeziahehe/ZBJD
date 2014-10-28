@@ -71,7 +71,7 @@
 {
     int max = [[yLabels valueForKeyPath:@"@max.intValue"] intValue];
     
-    _yValueMax = (int)max;
+    _yValueMax = (int)max * 1.1;
     
     if (_yValueMax == 0) {
         _yValueMax = _yMinValue;
