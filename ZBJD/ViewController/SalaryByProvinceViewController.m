@@ -6,6 +6,9 @@
 //  Copyright (c) 2014年 Ye Fan. All rights reserved.
 //
 
+/**
+ Ye Fan 对PNPieChart进行了高度定制，若要使用请移步https://github.com/kevinzhow/PNChart
+ */
 #import "SalaryByProvinceViewController.h"
 #import "PNPieChart.h"
 

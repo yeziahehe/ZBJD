@@ -6,6 +6,9 @@
 //  Copyright (c) 2014年 Ye Fan. All rights reserved.
 //
 
+/**
+ Ye Fan 对PNBarChart进行了高度定制，若要使用请移步https://github.com/kevinzhow/PNChart
+ */
 #import "SalaryByMonthViewController.h"
 #import "PNBarChart.h"
 
