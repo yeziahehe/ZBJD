@@ -14,6 +14,7 @@
 @property (nonatomic, copy)NSString *developDate;
 @property (nonatomic, copy)NSString *finish;
 @property (nonatomic, copy)NSString *line;
+@property (nonatomic, copy)NSString *province;
 
 - (id)initWithDict:(NSDictionary *)dict;
 

@@ -10,6 +10,8 @@
 #import "InputInfoViewController.h"
 #import "SalaryByMonthViewController.h"
 #import "SalaryByProvinceViewController.h"
+#import "DevelopByMonthViewController.h"
+#import "DevelopByProvinceViewController.h"
 
 @interface MoreViewController ()
 @property (nonatomic, strong) NSArray *targetInfoArray;
@@ -121,10 +123,12 @@
         case 1:
         {
             if (indexPath.row == 0) {
-                //
+                DevelopByMonthViewController *dbmvc = [[DevelopByMonthViewController alloc]initWithNibName:@"DevelopByMonthViewController" bundle:nil];
+                [self.navigationController pushViewController:dbmvc animated:YES];
             }
             else if (indexPath.row == 1) {
-                //
+                DevelopByProvinceViewController *dbpvc = [[DevelopByProvinceViewController alloc]initWithNibName:@"DevelopByProvinceViewController" bundle:nil];
+                [self.navigationController pushViewController:dbpvc animated:YES];
             }
         }
             break;

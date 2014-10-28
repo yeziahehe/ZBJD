@@ -9,7 +9,7 @@
 #import "Develop.h"
 
 @implementation Develop
-@synthesize cancel,developDate,finish,line;
+@synthesize cancel,developDate,finish,line,province;
 
 - (id)initWithDict:(NSDictionary *)dict
 {
