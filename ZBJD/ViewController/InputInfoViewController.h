@@ -18,4 +18,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *allLabel;
 @property (strong, nonatomic) IBOutlet UILabel *bgLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *contentScrollView;
+@property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
 @end

@@ -21,7 +21,7 @@
 @synthesize contentScrollView;
 @synthesize titleLabel,judgeLabel,salaryArray;
 @synthesize finishIcon,allIcon;
-@synthesize finishLabel,allLabel,bgLabel,progressBarImageView;
+@synthesize finishLabel,allLabel,bgLabel,progressBarImageView,percentageLabel;
 
 #pragma mark - Private Methods
 - (void)initLabel
@@ -71,6 +71,7 @@
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     self.finishLabel.text = [NSString stringWithFormat:@"%@元", [numberFormatter stringFromNumber:[NSNumber numberWithFloat:self.finishNum]]];
+    self.percentageLabel.text = [NSString stringWithFormat:@"%1.1f%%",(double)self.finishNum/200000.0*100];
     UIImage *progressImage = [UIImage imageNamed:@"bg_dot_red.png"];
     progressImage = [progressImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, progressImage.size.width/2-1, 0, progressImage.size.width/2)];
     self.progressBarImageView.image = progressImage;

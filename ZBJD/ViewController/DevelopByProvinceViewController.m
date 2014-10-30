@@ -22,7 +22,7 @@
 @synthesize contentScrollView;
 @synthesize titleLabel,developArray;
 @synthesize finishIcon,allIcon;
-@synthesize finishLabel,allLabel,bgLabel,progressBarImageView;
+@synthesize finishLabel,allLabel,bgLabel,progressBarImageView,percentageLabel;
 
 #pragma mark - Private Methods
 - (void)initLabel
@@ -47,18 +47,21 @@
     NSMutableArray *cArray = [NSMutableArray array];
     for (NSInteger i = self.developArray.count - 1; i >= 0; i--) {
         Develop *d = [self.developArray objectAtIndex:i];
-        [xArray addObject:d.province];
-        [lArray addObject:d.line];
-        [yArray addObject:[NSNumber numberWithInt:[d.finish intValue]]];
-        [cArray addObject:LightRed];
-        self.finishNum += [d.finish floatValue];
-        self.allNum += [d.line floatValue];
+        if (![d.finish isEqualToString:@"0"]) {
+            [xArray addObject:d.province];
+            [lArray addObject:d.line];
+            [yArray addObject:[NSNumber numberWithInt:[d.finish intValue]]];
+            [cArray addObject:LightRed];
+            self.finishNum += [d.finish floatValue];
+            self.allNum += [d.line floatValue];
+        }
     }
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     self.finishLabel.text = [NSString stringWithFormat:@"%@个", [numberFormatter stringFromNumber:[NSNumber numberWithFloat:self.finishNum]]];
     self.allLabel.text = [NSString stringWithFormat:@"%@个", [numberFormatter stringFromNumber:[NSNumber numberWithFloat:self.allNum]]];
+    self.percentageLabel.text = [NSString stringWithFormat:@"%1.1f%%",(double)self.finishNum/(double)self.allNum*100];
     UIImage *progressImage = [UIImage imageNamed:@"bg_dot_red.png"];
     progressImage = [progressImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, progressImage.size.width/2-1, 0, progressImage.size.width/2)];
     self.progressBarImageView.image = progressImage;
@@ -93,7 +96,7 @@
     [self.contentScrollView addSubview:barChart];
     
     UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(40.f, barChart.frame.size.height + barChart.frame.origin.y, ScreenWidth - 40.f, 20.f)];
-    tipLabel.text = @"表示该月当天用户发展量为0";
+    tipLabel.text = @"未显示省份表示该省份用户发展量为0";
     tipLabel.font = [UIFont systemFontOfSize:12.f];
     tipLabel.textColor = TextLightGray;
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(25.f, barChart.frame.size.height + barChart.frame.origin.y + 5.f, 10.f, 10.f)];

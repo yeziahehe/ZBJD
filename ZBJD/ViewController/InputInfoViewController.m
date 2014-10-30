@@ -22,7 +22,7 @@
 @synthesize contentScrollView;
 @synthesize titleLabel,inputArray;
 @synthesize finishIcon,allIcon;
-@synthesize finishLabel,allLabel,bgLabel,progressBarImageView;
+@synthesize finishLabel,allLabel,bgLabel,progressBarImageView,percentageLabel;
 
 #pragma mark - Private Methods
 - (void)initLabel
@@ -33,7 +33,7 @@
     [dateMonthformate setDateFormat:@"MM"];
     NSString *date_Month = [dateMonthformate stringFromDate:[NSDate date]];
 
-    self.titleLabel.text = [NSString stringWithFormat:@"%@月份各省净增收入",date_Month];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@月份各省录单情况跟踪",date_Month];
     [[DataManager sharedManager]requestForInputInfoInThisMonthByProvince];
     
 }
@@ -64,6 +64,7 @@
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     self.finishLabel.text = [NSString stringWithFormat:@"%@个", [numberFormatter stringFromNumber:[NSNumber numberWithFloat:self.finishNum]]];
     self.allLabel.text = [NSString stringWithFormat:@"%@个", [numberFormatter stringFromNumber:[NSNumber numberWithFloat:self.allNum]]];
+    self.percentageLabel.text = [NSString stringWithFormat:@"%1.1f%%",(double)self.finishNum/(double)self.allNum*100];
     UIImage *progressImage = [UIImage imageNamed:@"bg_dot_red.png"];
     progressImage = [progressImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, progressImage.size.width/2-1, 0, progressImage.size.width/2)];
     self.progressBarImageView.image = progressImage;

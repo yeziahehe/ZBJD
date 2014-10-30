@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *progressBarImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *finishIcon;
 @property (strong, nonatomic) IBOutlet UIImageView *allIcon;
+@property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
 
 @end

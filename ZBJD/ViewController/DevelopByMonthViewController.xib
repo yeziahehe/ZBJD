@@ -12,6 +12,7 @@
                 <outlet property="contentScrollView" destination="HIv-nq-7Yc" id="dO5-tl-u0V"/>
                 <outlet property="finishIcon" destination="ago-lZ-seD" id="CNb-vD-tAK"/>
                 <outlet property="finishLabel" destination="hKd-eg-B6A" id="hyT-Hy-p7R"/>
+                <outlet property="percentageLabel" destination="0aR-kV-sXA" id="jbE-Sn-i0m"/>
                 <outlet property="progressBarImageView" destination="FIi-BC-ZJs" id="L1J-1y-Xnu"/>
                 <outlet property="titleLabel" destination="jhc-mV-Srn" id="Tyr-Pr-ywH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -80,6 +81,20 @@
                             <rect key="frame" x="168" y="418" width="10" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成率：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KdG-4i-gCS">
+                            <rect key="frame" x="186" y="436" width="48" height="21"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0aR-kV-sXA">
+                            <rect key="frame" x="234" y="436" width="66" height="21"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                 </scrollView>
             </subviews>
