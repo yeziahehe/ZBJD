@@ -95,6 +95,7 @@
     barChart.strokeColors = cArray;
     barChart.showLine = YES;
     barChart.lineValues = lArray;
+    barChart.yLabelSum = 0;
     [barChart strokeChart];
     [self.contentScrollView addSubview:barChart];
     

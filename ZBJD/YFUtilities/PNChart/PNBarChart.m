@@ -81,6 +81,24 @@
     
     _yValueMax = (int)max * 1.1;
     
+    //YF
+    int maxValue = 0;
+    int grade = 0;
+    
+    if (_yValueMax/10000 > 0) {
+        grade = 5000;
+    }
+    else if (_yValueMax/1000 > 0) {
+        grade = 500;
+    }
+    
+    do {
+        maxValue += grade;
+    } while (maxValue < _yValueMax);
+    
+    _yValueMax = maxValue;
+    //YF
+    
     if (_yValueMax == 0) {
         _yValueMax = _yMinValue;
     }
@@ -115,6 +133,28 @@
     }else{
         [self getYValueMax:array];
     }
+}
+
+- (void)setYLabelSum:(NSInteger)yLabelSum
+{
+    do {
+        if (_yValueMax/10000 > 0) {
+            _yLabelSum = _yValueMax/10000;
+            if (_yLabelSum < 5) {
+                _yLabelSum = _yValueMax/5000;
+                break;
+            }
+            break;
+        }
+        else if (_yValueMax/1000 > 0) {
+            _yLabelSum = _yValueMax/1000;
+            if (_yLabelSum < 5) {
+                _yLabelSum = _yValueMax/500;
+                break;
+            }
+            break;
+        }
+    } while (0);
 }
 //=====================YF custom
 
@@ -158,9 +198,14 @@
         
         float yLabelSectionHeight = (self.frame.size.height - _chartMargin * 2 - xLabelHeight) / _yLabelSum;
         
+        //=====================YF custom
+        
+        //=====================YF custom
+        
         for (int index = 0; index < _yLabelSum; index++) {
-
-            NSString *labelText = _yLabelFormatter((float)_yValueMax * ( (_yLabelSum - index) / (float)_yLabelSum ));
+            
+            NSString *labelText = _yLabelFormatter(_yValueMax * (_yLabelSum - index)/_yLabelSum);
+            //NSString *labelText = _yLabelFormatter((float)_yValueMax * ( (_yLabelSum - index) / (float)_yLabelSum ));
             
             PNChartLabel * label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0,
                                                                                   yLabelSectionHeight * index + _chartMargin - yLabelHeight/2.0,
@@ -231,6 +276,10 @@
             bar.barColor = [self barColorAtIndex:index];
         }
         
+        //=====================YF custom
+        bar.value = [NSString stringWithFormat:@"%@",valueString];
+        //=====================YF custom
+        
         //Height Of Bar
         bar.grade = grade;
         
@@ -240,7 +289,6 @@
 
         //For Click Index
         bar.tag = index;
-        
         
         [_bars addObject:bar];
         [_contentScrollView addSubview:bar];

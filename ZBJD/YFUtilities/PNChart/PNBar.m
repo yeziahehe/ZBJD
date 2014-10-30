@@ -8,6 +8,7 @@
 
 #import "PNBar.h"
 #import "PNColor.h"
+#import "PNChartLabel.h"
 
 @implementation PNBar
 
@@ -35,6 +36,13 @@
     _barRadius = barRadius;
     self.layer.cornerRadius = _barRadius;
 }
+
+//=====================YF custom
+-(void)setValue:(NSString *)value
+{
+    _value = value;
+}
+//=====================YF custom
 
 
 - (void)setGrade:(float)grade
@@ -64,6 +72,16 @@
     [_chartLine addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
 
     _chartLine.strokeEnd = 1.0;
+    
+    //=====================YF custom
+    CGFloat numLabelHeight = 15.f;
+    PNChartLabel *numLabel = [[PNChartLabel alloc]initWithFrame:CGRectMake(0, (1 - grade) * self.frame.size.height - numLabelHeight , self.frame.size.width, numLabelHeight)];
+    numLabel.text = _value;
+    numLabel.textColor = [UIColor colorWithRed:175.f/255.f green:175.f/255.f blue:175.f/255.f alpha:1.0];
+    numLabel.font = [UIFont systemFontOfSize:10.0f];
+    [self addSubview:numLabel];
+    
+    //=====================YF custom
     
     // Check if user wants to add a gradient from the start color to the bar color
     if (_barColorGradientStart) {
