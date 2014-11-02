@@ -55,10 +55,9 @@
 - (void)requestForSalaryInfoInLastMonthByProvince
 {
     NSDateFormatter *dateMonthformate=[[NSDateFormatter alloc]init];
-    [dateMonthformate setDateFormat:@"YYYY-MM-dd"];
-    NSString *lastMonthStartDate = [dateMonthformate stringFromDate:[YFCommon startOfLastMonth]];
-    NSString *lastMonthEndDate = [dateMonthformate stringFromDate:[YFCommon endOfLastMonth]];
-    NSString *url = [NSString stringWithFormat:@"%@%@&startDate=%@&endDate=%@",kServerAddress,kSalaryThisMonthByProvinceUrl,lastMonthStartDate,lastMonthEndDate];
+    [dateMonthformate setDateFormat:@"YYYY-MM"];
+    NSString *lastMonth = [dateMonthformate stringFromDate:[YFCommon startOfLastMonth]];
+    NSString *url = [NSString stringWithFormat:@"%@%@&month=%@",kServerAddress,kSalaryThisMonthByProvinceUrl,lastMonth];
     [[YFDownloaderManager sharedManager]requestDataByGetWithURLString:url
                                                              delegate:self
                                                               purpose:kSalaryInfoInLastMonthByProvinceDownloaderKey];

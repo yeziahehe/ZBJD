@@ -60,17 +60,24 @@
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     self.finishLabel.text = [NSString stringWithFormat:@"%@个", [numberFormatter stringFromNumber:[NSNumber numberWithFloat:self.finishNum]]];
     self.allLabel.text = [NSString stringWithFormat:@"%@个", [numberFormatter stringFromNumber:[NSNumber numberWithFloat:self.allNum]]];
-    self.percentageLabel.text = [NSString stringWithFormat:@"%1.1f%%",(double)self.finishNum/(double)self.allNum*100];
-    UIImage *progressImage = [UIImage imageNamed:@"bg_dot_red.png"];
-    progressImage = [progressImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, progressImage.size.width/2-1, 0, progressImage.size.width/2)];
-    self.progressBarImageView.image = progressImage;
-    self.progressBarImageView.frame = CGRectMake(20.f, 376.f, 0.f, 34.f);
-    CGFloat progressBarWidth = (double)self.finishNum/(double)self.allNum * self.bgLabel.frame.size.width;
-    [UIView animateWithDuration:0.8f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        CGRect progressFrame = self.progressBarImageView.frame;
-        progressFrame.size.width = progressBarWidth;
-        self.progressBarImageView.frame = progressFrame;
-    } completion:nil];
+    if (self.allNum > 0) {
+        self.percentageLabel.text = [NSString stringWithFormat:@"%1.1f%%",(double)self.finishNum/(double)self.allNum*100];
+    } else {
+        self.percentageLabel.text = @"0%%";
+    }
+    
+    if (self.allNum > 0) {
+        UIImage *progressImage = [UIImage imageNamed:@"bg_dot_red.png"];
+        progressImage = [progressImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, progressImage.size.width/2-1, 0, progressImage.size.width/2)];
+        self.progressBarImageView.image = progressImage;
+        self.progressBarImageView.frame = CGRectMake(20.f, 376.f, 0.f, 34.f);
+        CGFloat progressBarWidth = (double)self.finishNum/(double)self.allNum * self.bgLabel.frame.size.width;
+        [UIView animateWithDuration:0.8f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            CGRect progressFrame = self.progressBarImageView.frame;
+            progressFrame.size.width = progressBarWidth;
+            self.progressBarImageView.frame = progressFrame;
+        } completion:nil];
+    }
     
     CGFloat width = 0.f;
     if (xArray.count < 5) {

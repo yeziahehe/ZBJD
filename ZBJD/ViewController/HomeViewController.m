@@ -71,9 +71,18 @@
     }
     [YFCommon animationPopToLabel:self.developNumLabel withValue:developNum];
     [YFCommon animationPopToLabel:self.remainDevelopLabel withValue:remainNum];
-    [YFCommon animationPopToLabel:self.dayDevelopLabel withValue:developNum/self.developArray.count];
+    if (developNum == 0) {
+        [YFCommon animationPopToLabel:self.dayDevelopLabel withValue:developNum];
+    } else {
+        [YFCommon animationPopToLabel:self.dayDevelopLabel withValue:developNum/self.developArray.count];
+    }
     [YFCommon animationPopToLabel:self.monthCancelLabel withValue:cancelNum];
-    [YFCommon animationPopToLabel:self.dayCancelLabel withValue:cancelNum/self.developArray.count];
+    if (developNum == 0) {
+        [YFCommon animationPopToLabel:self.dayCancelLabel withValue:cancelNum];
+    } else {
+        [YFCommon animationPopToLabel:self.dayCancelLabel withValue:cancelNum/self.developArray.count];
+    }
+    
     [self setLeftItemEnable:YES];
 }
 

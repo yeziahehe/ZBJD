@@ -34,7 +34,7 @@
     NSDateFormatter *dateMonthformate=[[NSDateFormatter alloc]init];
     [dateMonthformate setDateFormat:@"MM"];
     NSString *date_Month = [dateMonthformate stringFromDate:[NSDate date]];
-    if ([date_Day isEqualToString:@"1"] || [date_Day isEqualToString:@"2"]) {
+    if ([date_Day isEqualToString:@"01"] || [date_Day isEqualToString:@"02"]) {
         self.judgeLabel.hidden = NO;
         self.titleLabel.text = [NSString stringWithFormat:@"%d月份各省净增收入",[date_Month intValue]-1];
         //做一次请求上月数据
