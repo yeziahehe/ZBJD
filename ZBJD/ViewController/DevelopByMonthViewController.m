@@ -52,8 +52,8 @@
             [yArray addObject:[NSNumber numberWithInt:[d.finish intValue]]];
             [cArray addObject:LightRed];
             self.finishNum += [d.finish floatValue];
-            self.allNum += [d.line floatValue];
         }
+        self.allNum += [d.line floatValue];
     }
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];

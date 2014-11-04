@@ -198,7 +198,7 @@
         }
         else
         {
-            NSString *message = @"指标进度获取失败!";
+            NSString *message = @"各省预计净增收入获取失败!";
             [[YFCommon sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

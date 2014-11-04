@@ -45,16 +45,13 @@
     NSMutableArray *yArray = [NSMutableArray array];
     NSMutableArray *lArray = [NSMutableArray array];
     NSMutableArray *cArray = [NSMutableArray array];
-    for (NSInteger i = self.developArray.count - 1; i >= 0; i--) {
-        Develop *d = [self.developArray objectAtIndex:i];
-        if (![d.finish isEqualToString:@"0"]) {
-            [xArray addObject:d.province];
-            [lArray addObject:d.line];
-            [yArray addObject:[NSNumber numberWithInt:[d.finish intValue]]];
-            [cArray addObject:LightRed];
-            self.finishNum += [d.finish floatValue];
-            self.allNum += [d.line floatValue];
-        }
+    for (Develop *d in self.developArray) {
+        [xArray addObject:d.province];
+        [lArray addObject:d.line];
+        [yArray addObject:[NSNumber numberWithInt:[d.finish intValue]]];
+        [cArray addObject:LightRed];
+        self.finishNum += [d.finish floatValue];
+        self.allNum += [d.line floatValue];
     }
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];

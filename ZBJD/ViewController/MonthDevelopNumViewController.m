@@ -30,10 +30,26 @@
     return monthDevelopNumView;
 }
 
-#pragma mark - Notification Methods
-- (void)developInfoInRecentMonthByDayNotification:(NSNotification *)notificaiton
+//#pragma mark - Notification Methods
+//- (void)developInfoInRecentMonthByDayNotification:(NSNotification *)notificaiton
+//{
+//    self.developArray = [DataManager sharedManager].developInfoInRecentMonthByDay;
+//    NSInteger dayDevelopNum = 0;
+//    self.maxNum = 0;
+//    for (Develop *d in self.developArray) {
+//        dayDevelopNum += [d.finish integerValue];
+//        if ([d.finish floatValue] > self.maxNum) {
+//            self.maxNum = [d.finish floatValue];
+//        }
+//    }
+//    [self.monthDevelopNumView reloadData:dayDevelopNum/self.developArray.count];
+//    [self.monthDevelopNumTableView reloadData];
+//}
+
+#pragma mark - Private Methods
+- (void)loadSubViews
 {
-    self.developArray = [DataManager sharedManager].developInfoInRecentMonthByDay;
+    self.developArray = [DataManager sharedManager].developInfoInThisMonthByDay;
     NSInteger dayDevelopNum = 0;
     self.maxNum = 0;
     for (Develop *d in self.developArray) {
@@ -63,8 +79,9 @@
     [self setTitle:@"日均发展量"];
     self.monthDevelopNumTableView.separatorStyle = NO;
     self.monthDevelopNumTableView.tableHeaderView = self.monthDevelopNumView;
-    [[DataManager sharedManager] requestForDevelopInfoInRecentMonthByDay];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(developInfoInRecentMonthByDayNotification:) name:kDevelopInfoInRecentMonthByDayNotification object:nil];
+    [self loadSubViews];
+//    [[DataManager sharedManager] requestForDevelopInfoInRecentMonthByDay];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(developInfoInRecentMonthByDayNotification:) name:kDevelopInfoInRecentMonthByDayNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning

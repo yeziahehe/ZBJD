@@ -70,7 +70,7 @@
         remainNum += [d.line integerValue];
     }
     [YFCommon animationPopToLabel:self.developNumLabel withValue:developNum];
-    [YFCommon animationPopToLabel:self.remainDevelopLabel withValue:remainNum];
+    [YFCommon animationPopToLabel:self.remainDevelopLabel withValue:remainNum-developNum];
     if (developNum == 0) {
         [YFCommon animationPopToLabel:self.dayDevelopLabel withValue:developNum];
     } else {

@@ -90,6 +90,8 @@
     }
     else if (_yValueMax/1000 > 0) {
         grade = 500;
+    } else {
+        grade = 100;
     }
     
     do {
@@ -370,7 +372,7 @@
         
         int last_x = 0;
         int last_y = 0;
-        CGFloat inflexionWidth = 4.0f;
+        CGFloat inflexionWidth = 6.0f;
         
         for (NSUInteger i = 0; i < _lineValues.count; i++) {
             
